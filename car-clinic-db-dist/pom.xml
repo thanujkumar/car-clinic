@@ -11,14 +11,6 @@
 
 	<artifactId>car-clinic-db-dist</artifactId>
 
-	<properties>
-		<carclinic.db.url>jdbc:oracle:thin:@(DESCRIPTION=(SOURCE_ROUTE=YES)
-			(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=orcl)))</carclinic.db.url>
-		<carclinic.db.user>car_clinic</carclinic.db.user>
-		<carclinic.db.password>carclinic</carclinic.db.password>
-		<oracle.driver>oracle.jdbc.OracleDriver</oracle.driver>
-	</properties>
-
 	<build>
 		<plugins>
 			<plugin>
