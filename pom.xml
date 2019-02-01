@@ -14,4 +14,10 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	
+	<modules>
+		<module>car-clinic-common</module>
+		<module>car-clinic-jooq</module>
+		<module>car-clinic-db-dist</module>
+	</modules>
+	
 </project>

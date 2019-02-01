@@ -1,0 +1,60 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.tk.template.framework</groupId>
+		<artifactId>car-clinic</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>car-clinic-db-dist</artifactId>
+
+	<properties>
+		<carclinic.db.url>jdbc:oracle:thin:@(DESCRIPTION=(SOURCE_ROUTE=YES)
+			(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=orcl)))</carclinic.db.url>
+		<carclinic.db.user>car_clinic</carclinic.db.user>
+		<carclinic.db.password>carclinic</carclinic.db.password>
+		<oracle.driver>oracle.jdbc.OracleDriver</oracle.driver>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>${version.flyway}</version>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>clean</goal>
+							<goal>migrate</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<sqlMigrationSeparator>__</sqlMigrationSeparator>
+					<url>${carclinic.db.url}</url>
+					<user>${carclinic.db.user}</user>
+					<password>${carclinic.db.password}</password>
+					<baselineOnMigrate>false</baselineOnMigrate>
+					<encoding>UTF-8</encoding>
+					<locations>
+						<location>filesystem:src/main/resources/db/migrations</location>
+					</locations>
+					<table>carclinic_schema_version</table>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>com.oracle</groupId>
+						<artifactId>ojdbc8</artifactId>
+						<version>${version.oracle.driver}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
