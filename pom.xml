@@ -25,8 +25,8 @@
 
 	<modules>
 		<module>car-clinic-common</module>
-		<module>car-clinic-jooq</module>
 		<module>car-clinic-db-dist</module>
+		<module>car-clinic-jooq</module>
 		<module>car-clinic-schemas</module>
 	</modules>
 
