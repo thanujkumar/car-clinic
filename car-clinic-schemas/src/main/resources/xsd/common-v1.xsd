@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="urn:srv.framework.template.tk.org:domain:common:v1"
+	xmlns:common="urn:srv.framework.template.tk.org:domain:common:v1"
+	elementFormDefault="qualified">
+
+
+	<complexType name="basePersistentEntityType"
+		abstract="true">
+		<sequence>
+			<element name="pk" type="common:generatedPkType"
+				minOccurs="0" maxOccurs="1" />
+			<element name="version"
+				type="common:optimisticLockVersionType" minOccurs="0" maxOccurs="1" />
+		</sequence>
+	</complexType>
+
+	<simpleType name="optimisticLockVersionType">
+		<annotation>
+			<documentation>
+				http://en.wikipedia.org/wiki/Optimistic_concurrency_control
+			</documentation>
+		</annotation>
+		<restriction base="unsignedLong" />
+	</simpleType>
+
+	<simpleType name="generatedPkType">
+		<annotation>
+			<documentation>Generated primary key from database</documentation>
+		</annotation>
+		<restriction base="unsignedLong" />
+	</simpleType>
+
+</schema>

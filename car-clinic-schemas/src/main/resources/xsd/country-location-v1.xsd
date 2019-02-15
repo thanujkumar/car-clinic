@@ -1,4 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/country-location-v1"
-	xmlns:tns="http://www.example.org/country-location-v1" elementFormDefault="qualified">
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="urn:srv.framework.template.tk.org:domain:country.location:v1"
+	xmlns:location="urn:srv.framework.template.tk.org:domain:country.location:v1"
+	xmlns:common="urn:srv.framework.template.tk.org:domain:common:v1"
+	elementFormDefault="qualified">
+
+	<import
+		namespace="urn:srv.framework.template.tk.org:domain:common:v1"
+		schemaLocation="common-v1.xsd" />
+
+	<complexType name="countryLocationType">
+		<complexContent>
+			<extension base="common:basePersistentEntityType">
+				<sequence>
+					<element name="countryId" type="unsignedLong" />
+					<element name="street" type="string" />
+					<element name="address1" type="string" />
+					<element name="address2" type="string" minOccurs="0" />
+					<element name="createdBy" type="string" />
+					<element name="modifiedBy" type="string" minOccurs="0" />
+					<element name="createdTime" type="dateTime" minOccurs="0" />
+					<element name="modifiedTime" type="dateTime" minOccurs="0" />
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
 </schema>
