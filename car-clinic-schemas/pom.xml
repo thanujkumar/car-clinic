@@ -1,12 +1,39 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  
-  <parent>
-    <groupId>org.tk.template.framework</groupId>
-    <artifactId>car-clinic</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-  </parent>
-  
-  <artifactId>car-clinic-schemas</artifactId>
-  
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.tk.template.framework</groupId>
+		<artifactId>car-clinic</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>car-clinic-schemas</artifactId>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.tk.xsd.to.wsdl.generator</groupId>
+				<artifactId>ws-gen-maven</artifactId>
+				<version>0.0.1</version>
+				<executions>
+					<execution>
+					    <id>countryLocation</id>
+					    <goals>
+					      <goal>generate</goal>
+					    </goals>
+						<configuration>
+						 <wsdlConfig>
+						   <systemCode>CNTL</systemCode>
+						   <serviceIdentifier>CountryLocation_V1</serviceIdentifier>
+						   <xsd>src/main/resources/wsdl/country-ws-types-v1.xsd</xsd>
+						   <authHeaderVersion>V10</authHeaderVersion>
+						 </wsdlConfig>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
