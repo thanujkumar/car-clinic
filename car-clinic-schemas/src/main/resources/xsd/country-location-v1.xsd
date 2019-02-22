@@ -17,6 +17,8 @@
 					<element name="street" type="string" />
 					<element name="address1" type="string" />
 					<element name="address2" type="string" minOccurs="0" />
+					<element name="state" type="string" />
+					<element name="zip" type="unsignedInt" />
 					<element name="createdBy" type="string" />
 					<element name="modifiedBy" type="string" minOccurs="0" />
 					<element name="createdTime" type="dateTime" minOccurs="0" />
