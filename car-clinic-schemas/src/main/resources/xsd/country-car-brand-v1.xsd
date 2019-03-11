@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="urn:srv.framework.template.tk.org:domain:country.car.brand:v1"
+	xmlns:carcompany="urn:srv.framework.template.tk.org:domain:country.car.brand:v1"
+	xmlns:common="urn:srv.framework.template.tk.org:domain:common:v1"
+	elementFormDefault="qualified">
+
+	<import
+		namespace="urn:srv.framework.template.tk.org:domain:common:v1"
+		schemaLocation="common-v1.xsd" />
+
+	<complexType name="countryCarBrandType">
+		<sequence>
+			<element name="countryId" type="unsignedLong" />
+			<element name="carBrandId" type="unsignedLong" />
+			<element name="countryLocationId" type="unsignedLong" />
+			<element name="createdBy" type="string" />
+			<element name="modifiedBy" type="string" minOccurs="0" />
+			<element name="createdTime" type="dateTime" minOccurs="0" />
+			<element name="modifiedTime" type="dateTime" minOccurs="0" />
+			<element name="version"		type="common:optimisticLockVersionType" />
+		</sequence>
+	</complexType>
+
+</schema>
