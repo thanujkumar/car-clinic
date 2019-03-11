@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://tk.org/header/AuthConfig_v10"
+	xmlns:tns="http://tk.org/header/AuthConfig_v10" elementFormDefault="qualified">
+
+	<!-- elements -->
+	<element name="AuthHeader" type="tns:AuthHeaderType" />
+
+	<!-- global types -->
+	<complexType name="mapType">
+		<attribute name="key" type="string" use="required" />
+		<attribute name="value" type="string" use="required" />
+	</complexType>
+
+	<complexType name="AuthHeaderType">
+		<sequence>
+			<!-- Source application that initiated the request -->
+			<element name="SrcApp" type="string" minOccurs="1" nillable="false" />
+			<!-- Destination application this request belongs to -->
+			<element name="DestApp" type="string" minOccurs="1" nillable="false" />
+			<!-- service to be called. -->
+			<element name="ServiceToBeCalled" type="string" minOccurs="1" nillable="false" />
+			<!-- service version like simple convention a.b.c main.minor.bugfix -->
+			<element name="ServiceVersion" type="string" minOccurs="1" nillable="false" />
+			<!-- request context information -->
+			<element name="RequestContext" type="tns:RequestContextType" />
+		</sequence>
+	</complexType>
+
+
+	<complexType name="RequestContextType">
+		<sequence>
+			<!-- initiated person or system id -->
+			<element name="userid" type="string" minOccurs="1" nillable="false" />
+			<!-- authorization token -->
+			<element name="securitytoken" type="string" minOccurs="1" nillable="false" />
+			<!-- entity or organization that is allowed to integrate/call -->
+			<element name="entityId" type="string" minOccurs="1" nillable="false" />
+			<!-- client ip or host -->
+			<element name="host" type="string" minOccurs="1" nillable="false" />
+			<!-- application specific optional info or extensions -->
+			<element name="map" type="tns:mapType" minOccurs="0" maxOccurs="unbounded" nillable="true" />
+		</sequence>
+	</complexType>
+
+
+	<complexType name="ResponseStateType">
+		<sequence>
+			<!-- error code for reported error -->
+			<element name="ErrorCode" type="int" minOccurs="1" nillable="false" />
+			<!-- Response Severity Code -->
+			<element name="Severity" type="int" minOccurs="1" nillable="false" />
+			<!-- Code identifying the application returning the response -->
+			<element name="AppId" type="int" minOccurs="1" nillable="false" />
+			<!-- Error message -->
+			<element name="ErrorMessage" type="string" minOccurs="1" nillable="false" />
+			<!-- Request id to be used in the logs to trace -->
+			<element name="requestTraceId" type="long" minOccurs="0" nillable="true" />
+		</sequence>
+	</complexType>
+
+
+</schema>

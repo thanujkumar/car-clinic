@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:tk.org:ws:countryProcessingAction:v1"
+	xmlns:country="urn:srv.framework.template.tk.org:domain:country:v1"
+	xmlns:countryProcessingAction="urn:tk.org:domain:countryProcessingAction:v1" elementFormDefault="qualified">
+
+	<import namespace="http://tk.org/header/AuthConfig_v10" schemaLocation="../xsd/AuthHeader-v10.xsd" />
+
+	<import namespace="urn:srv.framework.template.tk.org:domain:country:v1" schemaLocation="../xsd/country-v1.xsd" />
+
+	<element name="createCountryRequest" type="country:countryType" />
+	<element name="createCountryResponse" type="country:countryType" />
+</schema>
