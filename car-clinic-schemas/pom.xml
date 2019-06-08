@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -10,7 +11,58 @@
 
 	<artifactId>car-clinic-schemas</artifactId>
 
+	<dependencies>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>javax.el-api</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.el</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.jvnet.jaxb2_commons</groupId>
+			<artifactId>jaxb2-fluent-api</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.jvnet.jaxb2_commons</groupId>
+			<artifactId>jaxb2-basics-runtime</artifactId>
+		</dependency>
 
+		<dependency>
+			<groupId>org.jvnet.jaxb2_commons</groupId>
+			<artifactId>jaxb2-basics</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jvnet.jaxb2_commons</groupId>
+			<artifactId>jaxb2-basics-annotate</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jvnet.jaxb2_commons</groupId>
+			<artifactId>jaxb2-commons-lang</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf.xjc-utils</groupId>
+			<artifactId>cxf-xjc-runtime</artifactId>
+		</dependency>
+
+	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
@@ -19,20 +71,61 @@
 				<version>0.0.1</version>
 				<executions>
 					<execution>
-					    <id>countryLocation</id>
-					    <goals>
-					      <goal>generate</goal>
-					    </goals>
+						<id>countryLocation</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
 						<configuration>
-						 <wsdlConfig>
-						   <systemCode>CNTL</systemCode>
-						   <serviceIdentifier>CountryLocation_V1</serviceIdentifier>
-						   <xsd>src/main/resources/wsdl/country-ws-types-v1.xsd</xsd>
-						   <authHeaderVersion>V10</authHeaderVersion>
-						 </wsdlConfig>
+							<wsdlConfig>
+								<systemCode>CNTL</systemCode>
+								<serviceIdentifier>CountryLocation_V1</serviceIdentifier>
+								<xsd>src/main/resources/wsdl/country-ws-types-v1.xsd</xsd>
+								<authHeaderVersion>V10</authHeaderVersion>
+							</wsdlConfig>
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+
+			<!-- packaging for distribution -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptors>
+								<descriptor>src/main/assembly/schema-package.xml</descriptor>
+							</descriptors>
+							<appendAssemblyId>true</appendAssemblyId>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- default options from main pom at car-clinic -->
+			<plugin>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-codegen-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>wsdl2java</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<wsdlRoot>${project.build.directory}/generated-resources/ws-gen/wsdl</wsdlRoot>
+					<defaultOptions>
+						<bindingFiles>
+							<bindingFile>${basedir}/src/main/resources/bindings.xml</bindingFile>
+						</bindingFiles>
+					</defaultOptions>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

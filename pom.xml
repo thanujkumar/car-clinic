@@ -30,4 +30,68 @@
 		<module>car-clinic-schemas</module>
 	</modules>
 
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+				<!-- https://cxf.apache.org/docs/maven-cxf-codegen-plugin-wsdl-to-java.html -->
+					<groupId>org.apache.cxf</groupId>
+					<artifactId>cxf-codegen-plugin</artifactId>
+					<version>${version.cxf}</version>
+					<configuration>
+						<fork>true</fork>
+						<additionalJvmArgs>-Djavax.xml.accessExternalSchema=all</additionalJvmArgs>
+						<additionalJvmArgs>-Djavax.xml.accessExternalDTD=all</additionalJvmArgs>
+						<defaultOptions>
+							<extraargs>
+								<extraarg>-xjc-Xts</extraarg>
+								<extraarg>-xjc-Xfluent-api</extraarg>
+								<extraarg>-xjc-mark-generated</extraarg>
+								<extraarg>-xjc-Xvalue-constructor</extraarg>
+								<extraarg>-xjc-Xequals</extraarg>
+								<extraarg>-xjc-XhashCode</extraarg>
+								<extraarg>-xjc-Xcopyable</extraarg>
+								<extraarg>-xjc-Xmergeable</extraarg>
+								<extraarg>-xjc-XJsr303Annotations</extraarg>
+								<!-- below should be in order -->
+								<extraarg>-exceptionSuper</extraarg>
+								<extraarg>java.lang.RuntimeException</extraarg>
+							</extraargs>
+							<validateWsdl>true</validateWsdl>
+						</defaultOptions>
+					</configuration>
+					<dependencies>
+						<dependency>
+							<groupId>org.apache.cxf.xjcplugins</groupId>
+							<artifactId>cxf-xjc-ts</artifactId>
+							<version>${version.cxf.xjc}</version>
+						</dependency>
+						<dependency>
+							<groupId>org.jvnet.jaxb2_commons</groupId>
+							<artifactId>jaxb2-fluent-api</artifactId>
+							<version>${version.jaxb2.fluent.api}</version>
+						</dependency>
+						<dependency>
+							<groupId>org.jvnet.jaxb2_commons</groupId>
+							<artifactId>jaxb2-basics</artifactId>
+							<version>${version.jaxb2.basics}</version>
+						</dependency>
+						<!-- https://github.com/krasa/krasa-jaxb-tools, validation api required-->
+						<dependency>
+							<groupId>com.github.krasa</groupId>
+							<artifactId>krasa-jaxb-tools</artifactId>
+							<version>${version.krasa.jaxb.tools}</version>
+						</dependency>
+						<dependency>
+							<groupId>org.jvnet.jaxb2_commons</groupId>
+							<artifactId>jaxb2-value-constructor</artifactId>
+							<version>${version.jaxb2.value.constructor}</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
 </project>

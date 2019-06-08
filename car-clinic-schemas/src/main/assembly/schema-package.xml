@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+	<formats>
+		<format>zip</format>
+	</formats>
+	<id>schemas-pkg</id>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<outputDirectory>${project.artifactId}/schemas/xsd</outputDirectory>
+			<directory>src/main/resources/xsd</directory>
+			<fileMode>0744</fileMode>
+		</fileSet>
+		<fileSet>
+			<outputDirectory>${project.artifactId}/schemas/wsdl</outputDirectory>
+			<directory>src/main/resources/wsdl</directory>
+			<fileMode>0744</fileMode>
+		</fileSet>
+		<fileSet>
+			<outputDirectory>${project.artifactId}/wsdl</outputDirectory>
+			<directory>${project.build.directory}/generated-resources/wsfabric/wsdl</directory>
+			<fileMode>0744</fileMode>
+		</fileSet>
+	</fileSets>
+</assembly>
