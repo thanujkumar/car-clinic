@@ -1,12 +1,15 @@
 <jxb:bindings version="2.1" xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:jxb="http://java.sun.com/xml/ns/jaxb" xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
 	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-	<jxb:globalBindings
-		xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
-		xmlns:xs="http://www.w3.org/2001/XMLSchema">
-		<jxb:javaType name="java.util.Date" xmlType="xs:dateTime"
-			parseMethod="org.apache.cxf.xjc.runtime.DataTypeAdapter.parseDateTime"
-			printMethod="org.apache.cxf.xjc.runtime.DataTypeAdapter.printDateTime" />
+	<jxb:globalBindings generateElementProperty="false">
+		<jxb:serializable uid="1" />
+
+		<!-- jxb:javaType name="java.util.Date" xmlType="xs:dateTime" parseMethod="org.apache.cxf.xjc.runtime.DataTypeAdapter.parseDateTime" 
+			printMethod="org.apache.cxf.xjc.runtime.DataTypeAdapter.printDateTime"/ -->
+		<xjc:javaType name="java.time.LocalDate" xmlType="xs:date"
+			adapter="com.migesok.jaxb.adapter.javatime.LocalDateXmlAdapter" />
+		<xjc:javaType name="java.time.LocalDateTime" xmlType="xs:dateTime"
+			adapter="com.migesok.jaxb.adapter.javatime.LocalDateTimeXmlAdapter" />
 	</jxb:globalBindings>
 
 </jxb:bindings>
