@@ -10,6 +10,7 @@
 		for each global element with an anonymous complex type. Global elements with a named complex type will have an @XmlElementDecl 
 		annotation on a create method on the generated ObjectFactory class. http://blog.bdoughan.com/2012/07/jaxb-and-root-elements.html -->
 
+	  <!-- Note audit colums are not required to be shown -->
 	<complexType name="countryType">
 		<complexContent>
 			<extension base="common:basePersistentEntityType">
