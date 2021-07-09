@@ -40,9 +40,10 @@
 				</configuration>
 				<dependencies>
 					<dependency>
-						<groupId>com.oracle</groupId>
-						<artifactId>ojdbc8</artifactId>
+						<groupId>com.oracle.database.jdbc</groupId>
+						<artifactId>ojdbc11-production</artifactId>
 						<version>${version.oracle.driver}</version>
+						<type>pom</type>
 					</dependency>
 				</dependencies>
 			</plugin>
